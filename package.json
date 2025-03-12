@@ -1,0 +1,22 @@
+{
+  "name": "deutschi",
+  "version": "1.0.0",
+  "description": "A friendly dragon on Discord.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jelle619/deutschi.git"
+  },
+  "author": "Bluefire",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jelle619/deutschi/issues"
+  },
+  "homepage": "https://github.com/jelle619/deutschi#readme",
+  "dependencies": {
+    "discord.js": "^14.18.0"
+  }
+}

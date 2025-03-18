@@ -101,7 +101,7 @@ client.on(Events.InteractionCreate, async interaction => {
 
 
 // VRChat
-const VRCHAT_GAME_ID = '438100'; // VRChat's application ID
+const VRCHAT_GAME_ID = '378435294170447882'; // VRChat's application ID
 const VRCHAT_COOLDOWN = vrchatCooldown; // in milliseconds
 const VRCHAT_CHANNEL_ID = vrchatChannelId; // Channel ID for VRChat activity updates
 

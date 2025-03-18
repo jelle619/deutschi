@@ -2,7 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { REST, Routes, Client, Collection, Events, GatewayIntentBits } = require('discord.js');
-const { token, clientId, guildId } = require('./config.json');
+const { token, clientId, guildId, vrchatCooldown, vrchatChannelId } = require('./config.json');
 const State = require('./state.js');
 
 // Create a new client instance
@@ -102,8 +102,8 @@ client.on(Events.InteractionCreate, async interaction => {
 
 // VRChat
 const VRCHAT_GAME_ID = '438100'; // VRChat's application ID
-const VRCHAT_COOLDOWN = 3600000; // 1 hour in milliseconds
-const VRCHAT_CHANNEL_ID = '1348738961912365062'; // Channel ID for VRChat activity updates
+const VRCHAT_COOLDOWN = vrchatCooldown; // in milliseconds
+const VRCHAT_CHANNEL_ID = vrchatChannelId; // Channel ID for VRChat activity updates
 
 let vrchatLastNotified = new Map(); // mapping that keeps track how long ago it has been since a user played VRChat
 

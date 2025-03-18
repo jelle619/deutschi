@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  deutschi:
+    image: ghcr.io/jelle619/deutschi:latest
+    container_name: deutschi
+    volumes:
+      - /opt/docker/deutschi/config.json:/home/node/app/config.json:ro
+    restart: unless-stopped

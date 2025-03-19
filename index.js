@@ -2,7 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { REST, Routes, Client, Collection, Events, GatewayIntentBits } = require('discord.js');
-const { token, clientId, guildId, vrchatCooldown, vrchatChannelId } = require('./config.json');
+const { verbose, token, clientId, guildId, vrchatCooldown, vrchatChannelId } = require('./config.json');
 const State = require('./state.js');
 
 // Create a new client instance
@@ -115,11 +115,15 @@ State.vrchatOptedInUsers = new Set(vrchatData || []); // Load in users contained
 
 
 client.on(Events.PresenceUpdate, (oldPresence, newPresence) => {
+	if (verbose) console.log('Presence Update event triggered:\n' + oldPresence + '\n=>\n' + newPresence);
+
 	if (!newPresence || !newPresence.user || !State.vrchatOptedInUsers.has(newPresence.user.id)) return;
 
 	const activities = newPresence.activities || [];
 	const isPlayingVRChat = activities.some(act => act.applicationId === VRCHAT_GAME_ID);
 	const userId = newPresence.user.id;
+
+	if (verbose) console.log('User is playing VRChat: ' + isPlayingVRChat);
 
 	if (isPlayingVRChat) {
 		const now = Date.now();

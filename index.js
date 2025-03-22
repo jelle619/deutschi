@@ -13,6 +13,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBit
 // It makes some properties non-nullable.
 client.once(Events.ClientReady, readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+	if (verbose) console.log('Intents:', client.options.intents);
 });
 
 // Log in to Discord with your client's token
@@ -114,8 +115,13 @@ const vrchatData = JSON.parse(fs.readFileSync('vrchat.json')); // Load vrchat.js
 State.vrchatOptedInUsers = new Set(vrchatData || []); // Load in users contained in vrchat.json
 
 
-client.on(Events.PresenceUpdate, (oldPresence, newPresence) => {
-	if (verbose) console.log('Presence Update event triggered:\n' + oldPresence + '\n=>\n' + newPresence);
+client.on(Events.PresenceUpdate, async (oldPresence, newPresence) => {
+	if (verbose) {
+		console.log('Presence Update event triggered: ');
+		console.log(oldPresence);
+		console.log(' => ');
+		console.log(newPresence);
+	}
 
 	if (!newPresence || !newPresence.user || !State.vrchatOptedInUsers.has(newPresence.user.id)) return;
 

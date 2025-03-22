@@ -137,7 +137,8 @@ client.on(Events.PresenceUpdate, async (oldPresence, newPresence) => {
 			vrchatLastNotified.set(userId, now);
 			const channel = VRCHAT_CHANNEL_ID ? newPresence.guild.channels.cache.get(VRCHAT_CHANNEL_ID) : newPresence.guild.systemChannel;
 			if (channel) {
-				channel.send(`${newPresence.user.username} has started playing VRChat!`);
+				channel.send(`<@${newPresence.user.id}> has started playing <@&1351714323491196988>. If you're free, you can ask them to hang out!`);
+				if (verbose) console.log('Sent message to channel ' + channel.id + '.');
 			}
 		}
 	}

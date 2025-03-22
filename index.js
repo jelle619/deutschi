@@ -129,7 +129,7 @@ client.on(Events.PresenceUpdate, (oldPresence, newPresence) => {
 		const now = Date.now();
 		if (!vrchatLastNotified.has(userId) || now - vrchatLastNotified.get(userId) > VRCHAT_COOLDOWN) {
 			vrchatLastNotified.set(userId, now);
-			const channel = vrchatChannel ? newPresence.guild.channels.cache.get(VRCHAT_CHANNEL_ID) : newPresence.guild.systemChannel;
+			const channel = VRCHAT_CHANNEL_ID ? newPresence.guild.channels.cache.get(VRCHAT_CHANNEL_ID) : newPresence.guild.systemChannel;
 			if (channel) {
 				channel.send(`${newPresence.user.username} has started playing VRChat!`);
 			}
